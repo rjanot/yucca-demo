@@ -1,0 +1,4 @@
+yucca_demo:
+    resource: "@YuccaDemoBundle/Resources/config/routing.yml"
+    prefix:   /
+

@@ -1,0 +1,95 @@
+YuccaDemoBundle_homepage:
+    pattern:  /
+    defaults: { _controller: YuccaDemoBundle:Default:index }
+
+#########################
+# Object mapped to only 1 table
+#########################
+YuccaDemoBundle_simple_list:
+    pattern:  /simple-table
+    defaults: { _controller: YuccaDemoBundle:SimpleTable:index }
+
+YuccaDemoBundle_simple_form:
+    pattern:  /simple-table/form
+    defaults: { _controller: YuccaDemoBundle:SimpleTable:form }
+
+YuccaDemoBundle_simple_read:
+    pattern:  /simple-table/{id}
+    defaults: { _controller: YuccaDemoBundle:SimpleTable:read }
+    requirements:
+        id:  \d+
+
+YuccaDemoBundle_simple_delete:
+    pattern:  /simple-table/delete/{id}
+    defaults: { _controller: YuccaDemoBundle:SimpleTable:delete }
+    requirements:
+        id:  \d+
+
+#########################
+# Object mapped to 2 table
+#########################
+YuccaDemoBundle_double_list:
+    pattern:  /double-table
+    defaults: { _controller: YuccaDemoBundle:DoubleTable:index }
+
+YuccaDemoBundle_double_form:
+    pattern:  /double-table/form/{id}
+    defaults: { _controller: YuccaDemoBundle:DoubleTable:form, id: ~  }
+
+YuccaDemoBundle_double_read:
+    pattern:  /double-table/{id}
+    defaults: { _controller: YuccaDemoBundle:DoubleTable:read }
+    requirements:
+        id:  \d+
+
+YuccaDemoBundle_double_delete:
+    pattern:  /double-table/delete/{id}
+    defaults: { _controller: YuccaDemoBundle:DoubleTable:delete }
+    requirements:
+        id:  \d+
+
+#########################
+# Object cached
+#########################
+YuccaDemoBundle_cached_list:
+    pattern:  /cached
+    defaults: { _controller: YuccaDemoBundle:Cached:index }
+
+YuccaDemoBundle_cached_form:
+    pattern:  /cached/form
+    defaults: { _controller: YuccaDemoBundle:Cached:form }
+
+YuccaDemoBundle_cached_read:
+    pattern:  /cached/{id}
+    defaults: { _controller: YuccaDemoBundle:Cached:read }
+    requirements:
+        id:  \d+
+
+YuccaDemoBundle_cached_delete:
+    pattern:  /cached/delete/{id}
+    defaults: { _controller: YuccaDemoBundle:Cached:delete }
+    requirements:
+        id:  \d+
+
+#########################
+# Object mapped with multiple row table
+#########################
+YuccaDemoBundle_multiple_list:
+    pattern:  /multiple-table
+    defaults: { _controller: YuccaDemoBundle:MultipleRow:index }
+
+YuccaDemoBundle_multiple_form:
+    pattern:  /multiple-table/form/{id}
+    defaults: { _controller: YuccaDemoBundle:MultipleRow:form, id: ~ }
+
+YuccaDemoBundle_multiple_read:
+    pattern:  /multiple-table/{id}
+    defaults: { _controller: YuccaDemoBundle:MultipleRow:read }
+    requirements:
+        id:  \d+
+
+YuccaDemoBundle_multiple_delete:
+    pattern:  /multiple-table/delete/{id}
+    defaults: { _controller: YuccaDemoBundle:MultipleRow:delete }
+    requirements:
+        id:  \d+

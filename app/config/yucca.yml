@@ -1,0 +1,169 @@
+#Yucca configuration
+yucca:
+    #DB connections
+    connections:
+        memcache_general:
+            type: memcache
+            options:
+                servers:
+                    - {port: 11211, host: 127.0.0.1}
+        default:
+            type: doctrine
+            options:
+                driver:   %database_driver%
+                host:     %database_host%
+                port:     %database_port%
+                dbname:   %database_name%
+                user:     %database_user%
+                password: %database_password%
+                charset:  UTF8
+    #DB Schema
+    schema:
+        1_test_simple_table:
+            sharding_strategy: modulo
+            shards:
+                - default
+
+        2_test_double_table_1:
+            sharding_strategy: modulo
+            shards:
+                - default
+
+        2_test_double_table_2:
+            sharding_strategy: modulo
+            shards:
+                - default
+
+        3_test_cached:
+            sharding_strategy: modulo
+            shards:
+                - default
+
+        4_test_multiple_main:
+            sharding_strategy: modulo
+            shards:
+                - default
+
+        4_test_multiple_params:
+            sharding_strategy: modulo
+            shards:
+                - default
+
+    sources:
+        simple_table:
+            default_params:
+                fields: {id: {type: 'identifier'}, last_name: ~, first_name: ~}
+            handlers:
+                -
+                    type: database_single_row
+                    table_name: 1_test_simple_table
+
+        double_table_1:
+            default_params:
+                fields: {id: {type: 'identifier'}, last_name: ~, first_name: ~}
+            handlers:
+                -
+                    type: database_single_row
+                    table_name: 2_test_double_table_1
+        double_table_2:
+            default_params:
+                fields: {id: {type: 'identifier'}, login: ~, password: ~}
+            handlers:
+                -
+                    type: database_single_row
+                    table_name: 2_test_double_table_2
+
+        cached:
+            default_params:
+                fields: {id: {type: 'identifier'}, last_name: ~, first_name: ~}
+            handlers:
+                -
+                    type: memcache
+                    connection_name: memcache_general
+                -
+                    type: database_single_row
+                    table_name: 3_test_cached
+
+        multiple_main:
+            default_params:
+                fields: {id: {type: 'identifier'}, last_name: ~, first_name: ~}
+            handlers:
+                -
+                    type: database_single_row
+                    table_name: 4_test_multiple_main
+
+        multiple_multiple:
+            default_params:
+                fields: {id: ~, background_color: ~, color: ~}
+                name_field: param_key
+                value_field: param_value
+                mapping: {id: main_id}
+            handlers:
+                -
+                    type: database_multiple_row
+                    table_name: 4_test_multiple_params
+
+    mapping:
+        YuccaDemo\DemoBundle\Model\SimpleTable:
+            mapper_class_name: ~
+            properties:
+                lastName:
+                    field: last_name
+                firstName:
+                    field: first_name
+            sources:
+                - simple_table
+
+        YuccaDemo\DemoBundle\Model\DoubleTable:
+            mapper_class_name: ~
+            properties:
+                lastName:
+                    field: last_name
+                firstName:
+                    field: first_name
+            sources:
+                - double_table_1
+                - double_table_2
+
+        YuccaDemo\DemoBundle\Model\Cached:
+            mapper_class_name: ~
+            properties:
+                lastName:
+                    field: last_name
+                firstName:
+                    field: first_name
+            sources:
+                - cached
+
+        YuccaDemo\DemoBundle\Model\MultipleRow:
+            mapper_class_name: ~
+            properties:
+                lastName:
+                    field: last_name
+                firstName:
+                    field: first_name
+                backgroundColor:
+                    field: background_color
+                color:
+                    field: color
+            sources:
+                - multiple_main
+                - multiple_multiple
+
+    selectors:
+        YuccaDemo\DemoBundle\Selector\SimpleTable:
+            sources:
+                - database
+        YuccaDemo\DemoBundle\Selector\DoubleTable1:
+            sources:
+                - database
+        YuccaDemo\DemoBundle\Selector\DoubleTable2:
+            sources:
+                - database
+        YuccaDemo\DemoBundle\Selector\Cached:
+            sources:
+                - memcache
+                - database
+        YuccaDemo\DemoBundle\Selector\MultipleRow:
+            sources:
+                - database

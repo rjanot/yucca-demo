@@ -1,0 +1,43 @@
+<h2>Selector 1</h2>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>FirstName</th>
+        <th>LastName</th>
+        <th>Login</th>
+        <th>Password</th>
+        <th>Actions</th>
+    </tr>
+    {% for item in list1 %}
+        <tr>
+            <td>{{ item.getId }}</td>
+            <td>{{ item.getFirstName }}</td>
+            <td>{{ item.getLastName }}</td>
+            <td>{{ item.getLogin }}</td>
+            <td>{{ item.getPassword }}</td>
+            <td><a href="{{ path('YuccaDemoBundle_double_delete',{id:item.getId}) }}">Delete</a></td>
+        </tr>
+    {% endfor %}
+</table>
+
+<h2>Selector 2</h2>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>FirstName</th>
+        <th>LastName</th>
+        <th>Login</th>
+        <th>Password</th>
+        <th>Actions</th>
+    </tr>
+    {% for item in list2 %}
+    <tr>
+        <td>{{ item.getId }}</td>
+        <td>{{ item.getFirstName }}</td>
+        <td>{{ item.getLastName }}</td>
+        <td>{{ item.getLogin }}</td>
+        <td>{{ item.getPassword }}</td>
+        <td><a href="{{ path('YuccaDemoBundle_double_delete',{id:item.getId}) }}">Delete</a></td>
+    </tr>
+    {% endfor %}
+</table>

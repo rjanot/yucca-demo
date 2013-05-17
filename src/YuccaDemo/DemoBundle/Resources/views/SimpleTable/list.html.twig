@@ -1,0 +1,16 @@
+<table>
+    <tr>
+        <th>ID</th>
+        <th>FirstName</th>
+        <th>LastName</th>
+        <th>Actions</th>
+    </tr>
+    {% for item in list %}
+        <tr>
+            <td>{{ item.getId }}</td>
+            <td>{{ item.getFirstName }}</td>
+            <td>{{ item.getLastName }}</td>
+            <td><a href="{{ path('YuccaDemoBundle_simple_delete',{id:item.getId}) }}">Delete</a></td>
+        </tr>
+    {% endfor %}
+</table>
