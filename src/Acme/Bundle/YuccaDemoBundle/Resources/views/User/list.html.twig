@@ -1,0 +1,19 @@
+<a href="{{ path('acme_yucca_demo_users_form') }}">Ajouter</a>
+<table>
+    <tr>
+        <th>id</th>
+        <th>email</th>
+        <th>last name</th>
+        <th>first name</th>
+        <th></th>
+    </tr>
+    {% for user in users %}
+        <tr>
+            <td><a href="{{ path('acme_yucca_demo_users_show', {id: user.id}) }}">{{ user.id }}</a></td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.lastName }}</td>
+            <td>{{ user.firstName }}</td>
+            <td><a href="{{ path('acme_yucca_demo_users_form', {id: user.id}) }}">Modifier</a></td>
+        </tr>
+    {% endfor %}
+</table>

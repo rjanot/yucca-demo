@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<routes xmlns="http://symfony.com/schema/routing"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
+
+    <route id="acme_yucca_demo_homepage" path="/">
+        <default key="_controller">AcmeYuccaDemoBundle:Default:index</default>
+    </route>
+
+    <route id="acme_yucca_demo_users_list" path="/users">
+        <default key="_controller">AcmeYuccaDemoBundle:User:list</default>
+    </route>
+
+    <route id="acme_yucca_demo_users_form" path="/users/form/{id}">
+        <default key="_controller">AcmeYuccaDemoBundle:User:form</default>
+        <default key="id" />
+    </route>
+
+    <route id="acme_yucca_demo_users_show" path="/users/{id}">
+        <default key="_controller">AcmeYuccaDemoBundle:User:show</default>
+    </route>
+
+
+    <route id="acme_yucca_demo_orders_form" path="/users/{user_id}/order/{order_id}">
+        <default key="_controller">AcmeYuccaDemoBundle:Order:form</default>
+        <default key="order_id" />
+    </route>
+</routes>

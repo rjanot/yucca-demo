@@ -1,0 +1,60 @@
+imports:
+    - { resource: config.yml }
+
+framework:
+    router:
+        resource: "%kernel.root_dir%/config/routing_dev.yml"
+        strict_requirements: true
+    profiler: { only_exceptions: false }
+
+web_profiler:
+    toolbar: "%debug_toolbar%"
+    intercept_redirects: "%debug_redirects%"
+
+monolog:
+    handlers:
+        main:
+            type:   stream
+            path:   "%kernel.logs_dir%/%kernel.environment%.log"
+            level:  debug
+        console:
+            type:   console
+            bubble: false
+        # uncomment to get logging in your browser
+        # you may have to allow bigger header sizes in your Web server configuration
+        #firephp:
+        #    type:   firephp
+        #    level:  info
+        #chromephp:
+        #    type:   chromephp
+        #    level:  info
+
+assetic:
+    use_controller: "%use_assetic_controller%"
+
+#swiftmailer:
+#    delivery_address: me@example.com
+parameters:
+  memcache_memcache_host: 127.0.0.1
+  memcache_memcache_port: 11211
+
+  database_default_driver: pdo_mysql
+  database_default_host: localhost
+  database_default_port:
+  database_default_name: test
+  database_default_user: test
+  database_default_password: test
+
+  database_order1_driver: pdo_mysql
+  database_order1_host: localhost
+  database_order1_port:
+  database_order1_name: order1
+  database_order1_user: test
+  database_order1_password: test
+
+  database_order2_driver: pdo_mysql
+  database_order2_host: localhost
+  database_order2_port:
+  database_order2_name: order2
+  database_order2_user: test
+  database_order2_password: test

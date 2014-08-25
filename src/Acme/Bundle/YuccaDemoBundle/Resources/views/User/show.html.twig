@@ -1,0 +1,38 @@
+<table>
+    <tr>
+        <th>Id</th>
+        <td>{{ user.id}}</td>
+    </tr>
+    <tr>
+        <th>Email</th>
+        <td>{{ user.email }}</td>
+    </tr>
+    <tr>
+        <th>Last Name</th>
+        <td>{{ user.lastName }}</td>
+    </tr>
+    <tr>
+        <th>First Name</th>
+        <td>{{ user.firstName }}</td>
+    </tr>
+</table>
+
+<hr/>
+
+<a href="{{ path('acme_yucca_demo_orders_form', {user_id: user.id}) }}">Add order</a>
+<table>
+    <tr>
+        <th>id</th>
+        <th>amount</th>
+        <th>created at</th>
+        <th></th>
+    </tr>
+    {% for order in orders %}
+        <tr>
+            <td>{{ order.id }}</td>
+            <td>{{ order.amount}}</td>
+            <td>{{ order.createdAt | date }}</td>
+            <td><a href="{{ path('acme_yucca_demo_orders_form', {user_id: user.id, order_id: order.id}) }}">Modifier</a></td>
+        </tr>
+    {% endfor %}
+</table>

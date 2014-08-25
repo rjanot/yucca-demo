@@ -1,0 +1,4 @@
+acme_yucca_demo:
+    resource: "@AcmeYuccaDemoBundle/Resources/config/routing.xml"
+    prefix:   /
+
